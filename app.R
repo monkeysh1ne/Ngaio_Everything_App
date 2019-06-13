@@ -1,4 +1,5 @@
 library(shiny)
+library(DT)
 
 
 ui <- fluidPage(
@@ -53,7 +54,7 @@ ui <- fluidPage(
     mainPanel(
       
       # Output: Data file ----
-      tableOutput("contents")
+      DT::dataTableOutput("contents")
     )
   )
 )
@@ -62,7 +63,7 @@ ui <- fluidPage(
 
 # Define server logic to read selected file ----
 server <- function(input, output) {
-  output$contents <- renderTable({
+  output$contents <- DT::renderDataTable({
     # inpyt$file1 will be NULL initially. After the user selects
     # and uploads a file, head of that data by default,
     # or all rows if selected, will be shown.
